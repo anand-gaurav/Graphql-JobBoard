@@ -1,14 +1,23 @@
 [
   {
+    "id": "ADgru-Geek",
+    "email": "gaurav@mt.com",
+    "password": "gaurav123",
+    "companyId": "MtAr-Vns",
+    "role": ["Admin"]
+  },
+  {
     "id": "BJrp-DudG",
-    "email": "alice@facegle.io",
+    "email": "alice@mt.com",
     "password": "alice123",
-    "companyId": "HJRa-DOuG"
+    "companyId": "HJRa-DOuG",
+    "role": ["ExtUser"]
   },
   {
     "id": "ry9pbwdOz",
-    "email": "bob@goobook.co",
+    "email": "bob@lnt.com",
     "password": "bob123",
-    "companyId": "SJV0-wdOM"
+    "companyId": "SJV0-wdOM",
+    "role": ["ExtUser"]
   }
 ]

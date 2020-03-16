@@ -5,7 +5,30 @@ const Query = {
   // is the second param 'args'. This will contain the argument passed in graph query
   //  job: (root, args) => db.jobs.get(args.id),
   job: (root, { id }) => db.jobs.get(id),
-  jobs: () => db.jobs.list(),
+
+  allJobs: (root, args, { user }) => {
+    console.log(user);
+    if (user && user.role && user.role.includes('Admin')) {
+      return db.jobs.list();
+    } else {
+      throw new Error('Unauthorized');
+    }
+  },
+
+  jobs: (root, { id }, { user }) => {
+    console.log(id);
+    console.log(`User: ${user}`);
+    if (!user) {
+      throw new Error('Unauthorized');
+    } else if (user && user.role.includes('Admin')) {
+      console.log('Admin');
+      return db.jobs.list();
+    } else if (user && user.role.includes('ExtUser') && user.companyId === id) {
+      return db.jobs.list().filter(job => job.companyId === id);
+    } else {
+      throw new Error('Unauthorized');
+    }
+  },
   company: (root, args) => db.companies.get(args.id)
 };
 

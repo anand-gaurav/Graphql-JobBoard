@@ -122,6 +122,6 @@ export async function loadJobs() {
   `;
   const {
     data: { jobs }
-  } = await apolloClient.query({ query });
+  } = await apolloClient.query({ query, fetchPolicy: 'no-cache' });
   return jobs;
 }
