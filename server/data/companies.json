@@ -2,11 +2,31 @@
   {
     "id": "HJRa-DOuG",
     "name": "MT",
-    "description": "We are a startup on a mission to disrupt social search engines."
+    "description": "We are a startup on a mission to disrupt social search engines.",
+    "companyDescription": [
+      {
+        "locale": "en-US",
+        "value": "We are a startup on a mission to disrupt social search engines."
+      },
+      {
+        "locale": "en-ES",
+        "value": "Somos una startup con la misión de perturbar los motores de búsqueda social."
+      }
+    ]
   },
   {
     "id": "SJV0-wdOM",
     "name": "LNT",
-    "description": "We are a startup on a mission to disrupt search social media."
+    "description": "It's all about Imagineering.",
+    "companyDescription": [
+      {
+        "locale": "en-US",
+        "value": "It's all about Imagineering."
+      },
+      {
+        "locale": "en-ES",
+        "value": "Se trata de Imagineering."
+      }
+    ]
   }
 ]

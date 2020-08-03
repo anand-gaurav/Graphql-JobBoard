@@ -11,46 +11,48 @@ const Query = {
     if (user && user.role && user.role.includes('Admin')) {
       return db.jobs.list();
     } else {
-      throw new Error('Unauthorized');
+      throw new Error('Unauthorized: Not an admin');
     }
   },
 
-  jobs: (root, { id }, { user }) => {
-    console.log(id);
-    console.log(`User: ${user}`);
+  jobs: (root, args, { user }) => {
+    console.log('User:' + JSON.stringify(user));
     if (!user) {
-      throw new Error('Unauthorized');
+      throw new Error('Unauthorized: User details not found');
     } else if (user && user.role.includes('Admin')) {
       console.log('Admin');
       return db.jobs.list();
-    } else if (user && user.role.includes('ExtUser') && user.companyId === id) {
-      return db.jobs.list().filter(job => job.companyId === id);
+    } else if (user && user.role.includes('ExtUser')) {
+      return db.jobs.list().filter((job) => job.companyId === user.companyId);
     } else {
-      throw new Error('Unauthorized');
+      throw new Error('Unauthorized: No roles found');
     }
   },
-  company: (root, args) => db.companies.get(args.id)
+  company: (root, args) => db.companies.get(args.id),
 };
 
 const Mutation = {
   createJob: (root, { input }, context) => {
     console.log(context);
     if (!context.user) {
-      throw new Error('Unauthorized');
+      throw new Error('Unauthorized in mutation: User details not found');
     }
     const id = db.jobs.create({ ...input, companyId: context.user.companyId });
     return db.jobs.get(id);
-  }
+  },
 };
 
 const Company = {
-  jobs: company => db.jobs.list().filter(job => job.companyId === company.id)
+  jobs: (company) =>
+    db.jobs.list().filter((job) => job.companyId === company.id),
+  companyDescription: (company) => company.companyDescription,
 };
 
 //'Job' exact name is present in schema file. Appolo server maps the name between schema and resolver
 const Job = {
   // in this case parent is the 'job' for which we want to resolve the company
-  company: job => db.companies.get(job.companyId)
+  company: (job) => db.companies.get(job.companyId),
+  jobDescription: (job) => job.jobDescription,
 };
 
 module.exports = { Query, Mutation, Company, Job };

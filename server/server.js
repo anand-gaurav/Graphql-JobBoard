@@ -33,10 +33,7 @@ app.post('/login', (req, res) => {
     res.sendStatus(401);
     return;
   }
-  const token = jwt.sign(
-    { sub: user.id, companyId: user.companyId },
-    jwtSecret
-  );
+  const token = jwt.sign({ sub: user.id }, jwtSecret);
   res.send({ token });
 });
 

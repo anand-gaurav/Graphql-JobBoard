@@ -3,18 +3,64 @@
     "id": "rJKAbDd_z",
     "companyId": "HJRa-DOuG",
     "title": "Frontend Developer",
-    "description": "We are looking for a Frontend Developer familiar with React."
+    "description": "We are looking for a Frontend Developer familiar with React.",
+    "jobDescription": [
+      {
+        "locale": "en-US",
+        "value": "We are looking for a Frontend Developer familiar with React."
+      },
+      {
+        "locale": "en-ES",
+        "value": "Estamos buscando un desarrollador frontend familiarizado con React."
+      }
+    ]
   },
   {
     "id": "SJRAZDu_z",
     "companyId": "HJRa-DOuG",
     "title": "Backend Developer",
-    "description": "We are looking for a Backend Developer familiar with Node.js and Express."
+    "description": "We are looking for a Backend Developer familiar with Node.js and Express.",
+    "jobDescription": [
+      {
+        "locale": "en-US",
+        "value": "We are looking for a Backend Developer familiar with Node.js and Express."
+      },
+      {
+        "locale": "en-ES",
+        "value": "Estamos buscando un desarrollador de backend familiarizado con Node.js y Express."
+      }
+    ]
   },
   {
     "id": "rkz1GwOOM",
     "companyId": "SJV0-wdOM",
     "title": "Full-Stack Developer",
-    "description": "We are looking for a Full-Stack Developer familiar with Node.js, Express, and React."
+    "description": "We are looking for a Full-Stack Developer familiar with Node.js, Express, and React.",
+    "jobDescription": [
+      {
+        "locale": "en-US",
+        "value": "We are looking for a Full-Stack Developer familiar with Node.js, Express, and React."
+      },
+      {
+        "locale": "en-ES",
+        "value": "Estamos buscando un desarrollador Full-Stack familiarizado con Node.js, Express y React."
+      }
+    ]
+  },
+  {
+    "id": "BkaciNhxw",
+    "title": "New LNT DevOps",
+    "description": "Azure DevOps Engineer to maintain CI/CD",
+    "jobDescription": [
+      {
+        "locale": "en-US",
+        "value": "Azure DevOps Engineer to maintain CI/CD"
+      },
+      {
+        "locale": "en-ES",
+        "value": "Ingeniero de Azure DevOps para mantener CI / CD"
+      }
+    ],
+    "companyId": "SJV0-wdOM"
   }
 ]

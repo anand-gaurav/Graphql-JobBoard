@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
 import { JobList } from './JobList';
 import { loadJobs } from './request';
-import { isLoggedIn, logout } from './auth';
+import { Redirect } from 'react-router-dom';
+import { isLoggedIn } from './auth';
 
 export class JobBoard extends Component {
   constructor(props) {
     super(props);
-    this.state = { jobs: [], loggedIn: isLoggedIn() };
+    this.state = { jobs: [] };
   }
 
   async componentDidMount() {
-    const jobs = await loadJobs();
-    this.setState({ jobs });
+    const loggedIn = isLoggedIn();
+    if (loggedIn) {
+      const jobs = await loadJobs();
+      this.setState({ jobs });
+    } else {
+      return null;
+    }
   }
 
   // static getDerivedStateFromProps(nextProps, prevState) {
@@ -28,8 +34,9 @@ export class JobBoard extends Component {
   // }
 
   render() {
-    const { jobs, loggedIn } = this.state;
+    const loggedIn = isLoggedIn();
     if (loggedIn) {
+      const { jobs } = this.state;
       return (
         <div>
           <h1 className="title">Job Board</h1>
@@ -37,7 +44,7 @@ export class JobBoard extends Component {
         </div>
       );
     } else {
-      return <div>Please Login</div>;
+      return <Redirect to="/login" />;
     }
   }
 }

@@ -2,7 +2,7 @@ import {
   ApolloClient,
   ApolloLink,
   HttpLink,
-  InMemoryCache
+  InMemoryCache,
 } from 'apollo-boost';
 import gql from 'graphql-tag';
 import { isLoggedIn, getAccessToken } from './auth';
@@ -14,8 +14,8 @@ const authLink = new ApolloLink((operation, forward) => {
     //options.headers['authorization'] = 'Bearer ' + getAccessToken();
     operation.setContext({
       headers: {
-        authorization: 'Bearer ' + getAccessToken()
-      }
+        authorization: 'Bearer ' + getAccessToken(),
+      },
     });
   }
   return forward(operation);
@@ -23,7 +23,7 @@ const authLink = new ApolloLink((operation, forward) => {
 
 const apolloClient = new ApolloClient({
   link: ApolloLink.from([authLink, new HttpLink({ uri: epUrl })]),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
 
 // async function graphqlRequest(query, variables = {}) {
@@ -59,7 +59,7 @@ export async function createJob(input) {
   `;
   //const { job } = await graphqlRequest(mutation, { input });
   const {
-    data: { job }
+    data: { job },
   } = await apolloClient.mutate({ mutation, variables: { input } });
   return job;
 }
@@ -80,7 +80,7 @@ export async function loadCompany(id) {
   `;
   //const data = await graphqlRequest(query, { id });
   const {
-    data: { company }
+    data: { company },
   } = await apolloClient.query({ query, variables: { id } });
   return company;
 }
@@ -102,14 +102,14 @@ export async function loadJob(id) {
 
   //const data = await graphqlRequest(query, { id });
   const {
-    data: { job }
+    data: { job },
   } = await apolloClient.query({ query, variables: { id } });
   return job;
 }
 
 export async function loadJobs() {
   const query = gql`
-    {
+    query AllJobsQuery {
       jobs {
         id
         title
@@ -121,7 +121,7 @@ export async function loadJobs() {
     }
   `;
   const {
-    data: { jobs }
+    data: { jobs },
   } = await apolloClient.query({ query, fetchPolicy: 'no-cache' });
   return jobs;
 }
